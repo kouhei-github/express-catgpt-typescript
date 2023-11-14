@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "target": "es5",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "outDir": "dist"
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

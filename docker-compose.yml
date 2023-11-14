@@ -1,0 +1,18 @@
+version: '3'
+services:
+  express:
+    image: express-chat-gpt-image
+    container_name: express-chat-gpt-container
+    build:
+      context: .
+      dockerfile: ./container/node/Dockerfile
+    tty: true
+    volumes:
+      - ./express:/app
+    ports:
+      - "8000:8000"
+    command: yarn start
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    env_file:
+      - ".env"
