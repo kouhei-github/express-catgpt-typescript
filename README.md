@@ -11,7 +11,7 @@ http://localhost:8000/api/v1/auth/register
 ```json
 {
     "username": "test",
-    "email": "test@dym.jp",
+    "email": "test@sample.jp",
     "password": "test"
 }
 ```
@@ -26,7 +26,7 @@ http://localhost:8000/api/v1/login
 
 ```json
 {
-  "email": "nagamatsu-k@dym.jp",
+  "email": "test@sample.jp",
   "password": "nagamatsu-k"
 }
 ```
