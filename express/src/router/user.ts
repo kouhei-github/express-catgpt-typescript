@@ -6,5 +6,4 @@ export default (router: Router) => {
   router.get("/v1/users", isAuthenticatedHandler, getAllUsersHandler)
   router.delete("/v1/users/:userId", isAuthenticatedHandler, isOwnerHandler, deleteUserHandler)
   router.put("/v1/users/:userId", isAuthenticatedHandler, isOwnerHandler, updateUserHandler)
-
 }

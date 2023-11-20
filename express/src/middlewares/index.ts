@@ -1,24 +1,24 @@
 import {NextFunction, Request, Response} from 'express'
-import {getUserBySessionToken} from '../db/users'
+import {getUserBySessionToken, IUser} from '../db/users'
 import {get, merge} from 'lodash'
 
 export const isOwnerHandler = async (req: Request, res: Response, next: NextFunction) => {
   try{
     const { userId } = req.params
-    const currentUserId = get(req, "identity._id") as string
+    const currentUserId: IUser = get(req, "identity", {} as IUser)
 
-    if(!currentUserId){
+    if(!currentUserId._id){
       return res.status(400).json({message: "userid is not equal"}).end()
     }
 
-    if(currentUserId.toString() !== userId){
+    if(currentUserId._id.toString() !== userId){
       const message = "Failed Authenticated"
       return res.status(403).json({message}).end()
     }
 
     return next()
   } catch (error) {
-    return res.status(400).json({message: error.message}).end()
+    return res.status(400).json({message: error}).end()
   }
 }
 
@@ -41,7 +41,6 @@ export const isAuthenticatedHandler = async (req: Request, res: Response, next: 
 
     return next()
   } catch (error) {
-    console.log(error)
-    return res.status(400).json({message: error.message}).end()
+    return res.status(400).json({message: error}).end()
   }
 }

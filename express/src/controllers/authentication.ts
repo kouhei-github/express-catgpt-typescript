@@ -10,10 +10,13 @@ export const loginHandler = async (req: Request, res: Response) => {
     return res.status(400).json({message: "必須呼応目が入力されていません"}).end()
   }
 
-  const user = await getUserByEmail(email).select("+authentication.salt +authentication.password")
+  const user = await getUserByEmail(email)
 
   if(!user){
     return res.status(400).json({message: "Emailが存在しません"}).end()
+  }
+  if(typeof user.authentication === "undefined" || user.authentication === null){
+    return res.status(400).json({message: "ユーザー情報が取得できませんでした"}).end()
   }
 
   const expectedHash = authentication(user.authentication.salt, password)
@@ -64,6 +67,6 @@ export const registerHandler = async (req: Request, res: Response) => {
     return res.status(201).json(user).end()
   } catch (e) {
     console.log(e)
-    return res.status(500).json({message: e.message}).end()
+    return res.status(500).json({message: e}).end()
   }
 }

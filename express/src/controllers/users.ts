@@ -10,7 +10,7 @@ export const getAllUsersHandler = async (req: Request, res: Response) => {
 
   } catch (e) {
     console.log(e)
-    return res.status(400).json({message: e.message}).end()
+    return res.status(400).json({message: e}).end()
   }
 }
 
@@ -31,7 +31,7 @@ export const deleteUserHandler = async (req: Request, res: Response) => {
     return res.status(200).json(deleteUser).end()
 
   } catch (e) {
-    return res.status(400).json({message: e.message}).end()
+    return res.status(400).json({message: e}).end()
   }
 }
 
@@ -62,7 +62,6 @@ export const updateUserHandler = async (req: Request, res: Response) => {
 
     return res.status(201).json(updateUser).end()
   } catch (e) {
-    const message = e.message
-    return res.status(400).json({message}).end()
+    return res.status(400).json({message: e}).end()
   }
 }
